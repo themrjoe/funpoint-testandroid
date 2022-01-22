@@ -1,0 +1,87 @@
+/*Спецификация*/
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+ul, li {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.form-group {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.alert {
+    margin-left: 5px;
+    font-size: 11px;
+    color: gray;
+}
+
+.important-description {
+    margin-left: 5px;
+    font-size: 11px;
+    color: gray;
+}
+
+.important-field {
+    color: red;
+}
+
+.list__sport {
+    margin-left: 20%;
+}
+
+.list-group-item {
+    background: #fef2e9;
+    color: #564037;
+}
+
+/* Главный экран */
+
+.logo {
+    margin-top: 5px;
+    margin-left: 2%;
+    height: 65px;
+    width: 225px;
+    image-rendering: auto;
+}
+
+.menu {
+
+}
+
+.menu__item {
+    margin-top: 15px;
+    margin: 30px;
+}
+
+.menu__item button {
+    font-size: 18px;
+    font-weight: 400;
+    color: #564037;
+    transition: 0.2s ease-out;
+}
+
+.offer__string {
+    margin-top: 10%;
+    margin-left: 29%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 26px;
+    color: #564037;
+}
+
+.categories__menu button {
+    margin-top: 38px;
+    margin-left: 130px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #564037;
+    transition: 0.2s ease-out;
+}
+

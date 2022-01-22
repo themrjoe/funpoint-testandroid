@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://ec2-34-247-151-118.eu-west-1.compute.amazonaws.com:5432/dcumh3obdb4phu
+    username: hbcjzynuqbzqrk
+    password: b5c0e3d28b93e50fe64184ac34d8f4b6c4e3aa9b809a7622221594b5e58eef11
+    driverClassName: org.postgresql.Driver
