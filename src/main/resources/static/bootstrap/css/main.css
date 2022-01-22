@@ -1,0 +1,67 @@
+/*Спецификация*/
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+ul, li {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.form-group {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.important-description {
+    margin-left: 5px;
+    font-size: 11px;
+    color: gray;
+}
+
+.important-field {
+    color: red;
+}
+
+/* Главный экран */
+
+.logo {
+    margin-top: 5px;
+    margin-left: 2%;
+    height: 65px;
+    width: 225px;
+    image-rendering: auto;
+}
+
+.menu {
+
+}
+
+.offer {
+    margin-top: 90%;
+    margin-left: 120%;
+    flex-direction: row;
+    justify-content: right;
+    width: 600px;
+    line-height: normal;
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    /*font-style: oblique;*/
+    color: white;
+}
+
+.menu__item {
+    margin-top: 15px;
+    margin: 30px;
+}
+
+.menu__item button {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    transition: 0.2s ease-out;
+}

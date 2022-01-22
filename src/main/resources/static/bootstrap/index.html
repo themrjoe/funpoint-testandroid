@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            background: url("img/background.png");
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+    </style>
+    <title>FunPoint</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<div class="modal fade" id="EventModalFade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Добавление события
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Название события<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventTitle" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Адрес<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventAddress" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Дата<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventDate" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Время<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventTime" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Цена
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventPrice" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Описание<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea type="text" class="form-control form-control-sm" id="colEventDescription"
+                                  rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Соц.сети/Сайт
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventSite" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Ваш E-Mail<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventEMail" placeholder="">
+                    </div>
+                </div>
+
+                <div class="important-description row">
+                    <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Закрыть
+                </button>
+                <button type="button" class="btn btn-primary sendEvent">
+                    Отправить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        addEvent();
+    });
+</script>
+
+<header id="header" class="header">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="img/logo.png" alt="FunPoint" class="logo">
+            </div>
+            <div class="col-lg-9 ml-auto">
+                <nav>
+                    <ul class="menu d-flex justify-content-end">
+                        <li class="menu__item">
+                            <a href="#">
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                    Главная
+                                </button>
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="categories.html">
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                    Категории
+                                </button>
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#">
+                                <button type="button" class="btn btn-link" data-toggle="modal"
+                                        data-target="#EventModalFade">
+                                    Добавить событие
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="offer">
+                    <h1 class="offer__title">
+                        Сервис для поиска актуальных событий города.
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
+</body>
+</html>

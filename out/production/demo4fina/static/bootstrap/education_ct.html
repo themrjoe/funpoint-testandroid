@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            background: url("img/background_food.png");
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+    </style>
+    <title>FunPoint</title>
+    <link href="./education_ct_files/css2" rel="stylesheet">
+    <link href="./education_ct_files/css2(1)" rel="stylesheet">
+    <link rel="stylesheet" href="./education_ct_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./education_ct_files/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./education_ct_files/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="./education_ct_files/education.css">
+
+</head>
+<body class="">
+
+<script src="./education_ct_files/jquery-3.2.1.slim.min.js.Без названия"></script>
+<script src="./education_ct_files/popper.min.js.Без названия"></script>
+<script src="./education_ct_files/bootstrap.min.js.Без названия"></script>
+
+<div class="modal fade" id="EventModalFade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Добавление события
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Название события<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventTitle" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Категория события<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventCategory" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Адрес<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventAddress" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Дата<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventDate" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Время<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventTime" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Цена
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventPrice" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Описание<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea type="text" class="form-control form-control-sm" id="colEventDescription"
+                                  rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Соц.сети/Сайт
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventSite" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        Ваш E-Mail<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="colEventEMail" placeholder="">
+                    </div>
+                </div>
+
+                <div class="important-description row">
+                    <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Закрыть
+                </button>
+                <button type="button" class="btn btn-primary sendEvent">
+                    Отправить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CategoryModalFade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Добавление категории
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                        Название категории<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="colCategoryTitle" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                        Описание<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-7">
+                        <textarea type="text" class="form-control form-control-sm" id="colCategoryDescription"
+                                  rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                        Ваш E-Mail<span class="important-field">*</span>
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="colCategoryEMail" placeholder="">
+                    </div>
+                </div>
+
+                <div class="important-description row">
+                    <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
+                </div>
+            </div>
+
+            <div class="alert row">
+                Добавляя категорию учитывайте тот факт, что если в течении 90 дней не будет опубликовано событий под
+                данную категорию, то она будет удалена!
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Закрыть
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Отправить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="someEvent">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="educationTitle">
+                    Тут название
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <div class="modal-body">
+
+                <ul class="list-group">
+                    <li class="list-group item">Тут адрес</li>
+                    <li class="list-group item">Тут дата и время</li>
+                    <li class="list-group item">Тут цена</li>
+                    <li class="list-group item">Тут описание</li>
+                    <li class="list-group item">Тут их оффициальный сайт, или соцсети</li>
+                </ul>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        addEvent();
+    });
+</script>
+
+<header id="header" class="header">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="./education_ct_files/logo.png" alt="FunPoint" class="logo">
+            </div>
+            <div class="col-lg-9 ml-auto">
+                <nav>
+                    <ul class="menu d-flex justify-content-end">
+                        <li class="menu__item">
+                            <a href="http://localhost:8080/index">
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                    Главная
+                                </button>
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="http://localhost:8080/categories#">
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                    Категории
+                                </button>
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="http://localhost:8080/categories#">
+                                <button type="button" class="btn btn-link" data-toggle="modal"
+                                        data-target="#EventModalFade">
+                                    Добавить событие
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="list">
+            <div class="list__education">
+                <div class="list-group">
+                    <div class="eventList">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#someEvent">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Название события</h5>
+                                    <small>Тут дата</small>
+                                </div>
+                                <p class="mb-1">Краткое описание Краткое описание Краткое описание Краткое описание
+                                    Краткое описание Краткое описание Краткое описание Краткое описание Краткое описание
+                                    Краткое описание Краткое описание Краткое описание Краткое описание Краткое
+                                    описание </p>
+                                <small>Ну и ещё чёт</small>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <nav>
+            <ul class="categories flex-column ">
+                <li class="categories__menu">
+                    <a href="food_ct.html">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Еда
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="music_ct.html">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Музыка
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="dance_ct.html">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Танцы
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="sport_ct.html">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Спорт
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="#">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Образование
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="other.html">
+                        <button type="button" class="btn btn-link" data-toggle="" data-target="">
+                            Другое
+                        </button>
+                    </a>
+                </li>
+
+                <li class="categories__menu">
+                    <a href="#">
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#CategoryModalFade">
+                            Добавить категорию
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="./education_ct_files/bootstrap.bundle.min.js.Без названия"></script>
+<script src="./education_ct_files/bootstrap.min.js(1).Без названия"></script>
+<script src="./education_ct_files/jquery-3.4.1.js.Без названия"></script>
+
+</body>
+</html>
