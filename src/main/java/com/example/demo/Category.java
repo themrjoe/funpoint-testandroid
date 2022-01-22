@@ -75,14 +75,6 @@ public class Category {
                 ", description='" + description + '\'' +
                 '}';
     }
-
-    public Category(int id_category, String title, String description) {
-        this();
-        this.setId_category(id_category);
-        this.setDescription(description);
-        this.setTitle(title);
-        this.setEventList(new ArrayList<>());
-    }
 }
 
 
