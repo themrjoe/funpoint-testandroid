@@ -16,7 +16,6 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
-
     private final CategoryRepository categoryRepository;
 
     public void saveEvent(Event event) {
@@ -40,14 +39,14 @@ public class EventService {
     }
 
     public void updateEvent(int id, String title, int category_id, String address, Date event_date, Time event_time, double price, String description) {
-        Event e = eventRepository.getOne(id);
+        Event e = eventRepository.getById(id);
         e.setAddress(address);
         e.setDescription(description);
         e.setEvent_date(event_date);
         e.setEvent_time(event_time);
         e.setPrice(price);
         e.setTitle(title);
-        Category c = categoryRepository.getOne(category_id);
+        Category c = categoryRepository.getById(category_id);
         e.setCategory(c);
         eventRepository.save(e);
     }

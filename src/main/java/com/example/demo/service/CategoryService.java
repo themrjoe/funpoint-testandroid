@@ -26,7 +26,7 @@ public class CategoryService {
     }
 
     public void updateCategory(int id, String title, String description) {
-        Category c = categoryRepository.getOne(id);
+        Category c = categoryRepository.getById(id);
         c.setTitle(title);
         c.setDescription(description);
         categoryRepository.save(c);
