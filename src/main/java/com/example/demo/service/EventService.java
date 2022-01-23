@@ -1,5 +1,9 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.EventRepository;
+import com.example.demo.entity.Category;
+import com.example.demo.entity.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.service.EventService;
+import com.example.demo.entity.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

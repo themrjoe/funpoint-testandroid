@@ -1,9 +1,10 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.entity.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
