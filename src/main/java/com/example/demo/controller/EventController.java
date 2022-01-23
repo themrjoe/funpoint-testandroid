@@ -1,20 +1,31 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.service.EventService;
+import com.example.demo.entity.Event;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class EventController {
 
-    @Autowired
-    private EventService eventService;
+    private final EventService eventService;
 
     public void addEvent(Event event) {
         event.setEvent_time(new Time(event.getTimeHelper().getTime()));
         eventService.saveEvent(event);
+    }
+
+    public List<Event> getAllEvents() {
+        return eventService.getAllEvents();
+    }
+
+    public List<Event> getEventsByCategoryTitle(String title) {
+        return eventService.getEventByCategoryTitle(title);
     }
 
     @DeleteMapping("/event")

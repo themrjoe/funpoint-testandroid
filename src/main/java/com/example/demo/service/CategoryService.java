@@ -1,20 +1,17 @@
-package com.example.demo;
+package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.entity.Category;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    public void setCategoryRepository(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    private final CategoryRepository categoryRepository;
 
     public void addCategory(Category category) {
         categoryRepository.save(category);
@@ -29,7 +26,7 @@ public class CategoryService {
     }
 
     public void updateCategory(int id, String title, String description) {
-        Category c = categoryRepository.getOne(id);
+        Category c = categoryRepository.getById(id);
         c.setTitle(title);
         c.setDescription(description);
         categoryRepository.save(c);
