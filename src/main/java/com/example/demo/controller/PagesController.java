@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.EventRepository;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +14,14 @@ import java.util.List;
 public class PagesController {
 
     private final EventController eventController;
-
     private final CategoryController categoryController;
 
-    private final EventRepository eventRepository;
-
-    private final CategoryRepository categoryRepository;
+    private static final String FOOD = "Еда";
+    private static final String MUSIC = "Еда";
+    private static final String DANCE = "Еда";
+    private static final String SPORT = "Еда";
+    private static final String EDU = "Еда";
+    private static final String OTHER = "Другое";
 
     /*index.html*/
     @PostMapping("/")
@@ -33,7 +33,7 @@ public class PagesController {
     @GetMapping("/")
     public String goToMain(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         return "index";
     }
 
@@ -49,8 +49,8 @@ public class PagesController {
     @GetMapping("/allEvents")
     public String goToAllEvents(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
+        model.addAttribute("events", eventController.getAllEvents());
         return "allEvents";
     }
 
@@ -68,9 +68,9 @@ public class PagesController {
     @GetMapping("/food")
     public String goToFood(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         model.addAttribute("category", new Category());
-        model.addAttribute("events", eventRepository.getEventByCategoryTitle("Еда"));
+        model.addAttribute("events", eventController.getEventsByCategoryTitle(FOOD));
         return "food_ct";
     }
 
@@ -88,9 +88,9 @@ public class PagesController {
     @GetMapping("/music")
     public String goToMusic(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         model.addAttribute("category", new Category());
-        model.addAttribute("events", eventRepository.getEventByCategoryTitle("Музыка"));
+        model.addAttribute("events", eventController.getEventsByCategoryTitle(MUSIC));
         return "music_ct";
     }
 
@@ -108,9 +108,9 @@ public class PagesController {
     @GetMapping("/dance")
     public String goToDance(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         model.addAttribute("category", new Category());
-        model.addAttribute("events", eventRepository.getEventByCategoryTitle("Танцы"));
+        model.addAttribute("events", eventController.getEventsByCategoryTitle(DANCE));
         return "dance_ct";
     }
 
@@ -128,9 +128,9 @@ public class PagesController {
     @GetMapping("/sport")
     public String goToSport(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         model.addAttribute("category", new Category());
-        model.addAttribute("events", eventRepository.getEventByCategoryTitle("Спорт"));
+        model.addAttribute("events", eventController.getEventsByCategoryTitle(SPORT));
         return "sport_ct";
     }
 
@@ -148,9 +148,9 @@ public class PagesController {
     @GetMapping("/education")
     public String goToEducation(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         model.addAttribute("category", new Category());
-        model.addAttribute("events", eventRepository.getEventByCategoryTitle("Образование"));
+        model.addAttribute("events", eventController.getEventsByCategoryTitle(EDU));
         return "education_ct";
     }
 
@@ -174,49 +174,49 @@ public class PagesController {
     public String goToCategories(Model model) {
         model.addAttribute("category", new Category());
         model.addAttribute("event", new Event());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryController.getAllCategories());
         return "categories";
     }
 
     @GetMapping("/android")
     @ResponseBody
     public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+        return eventController.getAllEvents();
     }
 
     @GetMapping("/android/food")
     @ResponseBody
-    public List<Event> getAllCategories() {
-        return eventRepository.getEventByCategoryTitle("Еда");
+    public List<Event> getFoodEvents() {
+        return eventController.getEventsByCategoryTitle(FOOD);
     }
 
     @GetMapping("/android/music")
     @ResponseBody
-    public List<Event> getFoodEvents() {
-        return eventRepository.getEventByCategoryTitle("Еда");
+    public List<Event> geMusicEvents() {
+        return eventController.getEventsByCategoryTitle(MUSIC);
     }
 
     @GetMapping("/android/dance")
     @ResponseBody
     public List<Event> getDanceEvents() {
-        return eventRepository.getEventByCategoryTitle("Танцы");
+        return eventController.getEventsByCategoryTitle(DANCE);
     }
 
     @GetMapping("/android/sport")
     @ResponseBody
     public List<Event> getSportEvents() {
-        return eventRepository.getEventByCategoryTitle("Спорт");
+        return eventController.getEventsByCategoryTitle(SPORT);
     }
 
     @GetMapping("/android/education")
     @ResponseBody
     public List<Event> getEduEvents() {
-        return eventRepository.getEventByCategoryTitle("Образование");
+        return eventController.getEventsByCategoryTitle(EDU);
     }
 
     @GetMapping("/android/other")
     @ResponseBody
     public List<Event> getOtherEvents() {
-        return eventRepository.getEventByCategoryTitle("Другое");
+        return eventController.getEventsByCategoryTitle(OTHER);
     }
 }

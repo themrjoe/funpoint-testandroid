@@ -19,16 +19,20 @@ public class EventService {
 
     private final CategoryRepository categoryRepository;
 
-        public void saveEvent(Event event) {
-            Category c = categoryRepository.getCategoryByTitle(event.getCategoryTitle());
-            event.setCategory(c);
-            eventRepository.save(event);
-            c.addEvent(event);
-            categoryRepository.save(c);
-        }
+    public void saveEvent(Event event) {
+        Category c = categoryRepository.getCategoryByTitle(event.getCategoryTitle());
+        event.setCategory(c);
+        eventRepository.save(event);
+        c.addEvent(event);
+        categoryRepository.save(c);
+    }
 
-        public List<Event> getAllEvents() {
+    public List<Event> getAllEvents() {
         return eventRepository.findAll();
+    }
+
+    public List<Event> getEventByCategoryTitle(String title) {
+        return eventRepository.getEventByCategoryTitle(title);
     }
 
     public void deleteEvent(int id) {

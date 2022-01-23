@@ -5,6 +5,8 @@ import com.example.demo.entity.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class CategoryController {
@@ -13,6 +15,10 @@ public class CategoryController {
 
     public void addCategory(Category category) {
         categoryService.addCategory(category);
+    }
+
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
 }

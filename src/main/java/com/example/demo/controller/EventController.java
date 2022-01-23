@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +18,14 @@ public class EventController {
     public void addEvent(Event event) {
         event.setEvent_time(new Time(event.getTimeHelper().getTime()));
         eventService.saveEvent(event);
+    }
+
+    public List<Event> getAllEvents() {
+        return eventService.getAllEvents();
+    }
+
+    public List<Event> getEventsByCategoryTitle(String title) {
+        return eventService.getEventByCategoryTitle(title);
     }
 
     @DeleteMapping("/event")
