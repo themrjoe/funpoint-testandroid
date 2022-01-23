@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,38 +9,18 @@ import java.sql.Time;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class PagesController {
 
-    private EventController eventController;
+    private final EventController eventController;
 
-    private CategoryController categoryController;
+    private final CategoryController categoryController;
 
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
 
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    public void setCategoryController(CategoryController categoryController) {
-        this.categoryController = categoryController;
-    }
-
-    @Autowired
-    public void setEventRepository(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
-
-    @Autowired
-    public void setCategoryRepository(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
-
-    @Autowired
-    public void setEventController(EventController eventController) {
-        this.eventController = eventController;
-    }
+    private final CategoryRepository categoryRepository;
 
     /*index.html*/
-
     @PostMapping("/")
     public String addEventByIndex(@ModelAttribute Event event) {
         eventController.addEvent(event);

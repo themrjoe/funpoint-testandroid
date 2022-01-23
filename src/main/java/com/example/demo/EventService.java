@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -8,21 +8,12 @@ import java.sql.Time;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EventService {
 
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
 
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    public void setEventRepository(EventRepository repository) {
-        this.eventRepository = repository;
-    }
-
-    @Autowired
-    public void setCategoryRepository(CategoryRepository repository) {
-        this.categoryRepository = repository;
-    }
+    private final CategoryRepository categoryRepository;
 
         public void saveEvent(Event event) {
             Category c = categoryRepository.getCategoryByTitle(event.getCategoryTitle());
