@@ -23,7 +23,6 @@ public class PagesController {
     private static final String EDU = "Еда";
     private static final String OTHER = "Другое";
 
-    /*index.html*/
     @PostMapping("/")
     public String addEventByIndex(@ModelAttribute Event event) {
         eventController.addEvent(event);
@@ -36,9 +35,6 @@ public class PagesController {
         model.addAttribute("categories", categoryController.getAllCategories());
         return "index";
     }
-
-    /*events*/
-    /*allEvents.html*/
 
     @PostMapping("/allEvents")
     public String eventSubmit(@ModelAttribute Event event) {

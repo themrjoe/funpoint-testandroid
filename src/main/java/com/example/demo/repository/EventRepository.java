@@ -8,4 +8,6 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
     List<Event> getEventByCategoryTitle(String title);
+
+    Event getEventByTitle(String title);
 }
