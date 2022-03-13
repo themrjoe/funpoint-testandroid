@@ -17,10 +17,10 @@ public class PagesController {
     private final CategoryController categoryController;
 
     private static final String FOOD = "Еда";
-    private static final String MUSIC = "Еда";
-    private static final String DANCE = "Еда";
-    private static final String SPORT = "Еда";
-    private static final String EDU = "Еда";
+    private static final String MUSIC = "Музыка";
+    private static final String DANCE = "Танцы";
+    private static final String SPORT = "Спорт";
+    private static final String EDU = "Образование";
     private static final String OTHER = "Другое";
 
     @PostMapping("/")
