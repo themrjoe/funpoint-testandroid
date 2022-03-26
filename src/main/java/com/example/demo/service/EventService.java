@@ -17,6 +17,10 @@ public class EventService {
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;
 
+    public Event getEventById(int id) {
+        return eventRepository.findById(id).orElse(null);
+    }
+
     public void saveEvent(Event event) {
         Category c = categoryRepository.getCategoryByTitle(event.getCategoryTitle());
         event.setCategory(c);

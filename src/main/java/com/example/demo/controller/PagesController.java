@@ -236,4 +236,10 @@ public class PagesController {
         eventService.saveEvent(event);
         return "index";
     }
+
+    @GetMapping("/android/event/{id}")
+    @ResponseBody
+    public Event getEventById(@PathVariable int id){
+        return eventService.getEventById(id);
+    }
 }

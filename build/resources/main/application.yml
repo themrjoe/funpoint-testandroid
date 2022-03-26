@@ -13,3 +13,5 @@ spring:
     username: cnckuujajxmngm
     password: caeb629b466c66e82993679d437f70b9939f334416218d4a346ad60fcd1bbd4f
     driverClassName: org.postgresql.Driver
+server:
+  port: 8081
