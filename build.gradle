@@ -4,7 +4,13 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'com.example.demo.DemoApplication'
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.example.demo.DemoApplication'
+        )
+    }
+}
 
 repositories {
     mavenLocal()
