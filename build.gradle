@@ -2,6 +2,17 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'application'
+    id 'org.springframework.boot' version '2.6.5'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+application {
+    mainClass = 'com.example.demo.DemoApplication'
+}
+
+springBoot {
+    mainClass = 'com.example.demo.DemoApplication'
 }
 
 jar {
