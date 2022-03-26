@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.RequestDto;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.entity.Category;
@@ -7,8 +8,6 @@ import com.example.demo.entity.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 @Service
@@ -30,6 +29,10 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public List<Event> getEventsByCategory(RequestDto requestDto) {
+        return eventRepository.getAllByCategory(categoryRepository.getById(requestDto.getCategoryId()));
+    }
+
     public List<Event> getEventByCategoryTitle(String title) {
         return eventRepository.getEventByCategoryTitle(title);
     }
@@ -38,12 +41,12 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    public void updateEvent(int id, String title, int category_id, String address, Date event_date, Time event_time, double price, String description) {
+    public void updateEvent(int id, String title, int category_id, String address, String event_date, String event_time, double price, String description) {
         Event e = eventRepository.getById(id);
         e.setAddress(address);
         e.setDescription(description);
-        e.setEvent_date(event_date);
-        e.setEvent_time(event_time);
+        e.setEventDate(event_date);
+        e.setEventTime(event_time);
         e.setPrice(price);
         e.setTitle(title);
         Category c = categoryRepository.getById(category_id);

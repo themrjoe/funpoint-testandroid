@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +17,15 @@ public class PagesController {
 
     private final EventController eventController;
     private final CategoryController categoryController;
+    private final EventService eventService;
 
     private static final String FOOD = "Еда";
-    private static final String MUSIC = "Еда";
-    private static final String DANCE = "Еда";
-    private static final String SPORT = "Еда";
-    private static final String EDU = "Еда";
+    private static final String MUSIC = "Музыка";
+    private static final String DANCE = "Танцы";
+    private static final String SPORT = "Спорт";
+    private static final String EDU = "Образование";
     private static final String OTHER = "Другое";
 
-    /*index.html*/
     @PostMapping("/")
     public String addEventByIndex(@ModelAttribute Event event) {
         eventController.addEvent(event);
@@ -36,9 +38,6 @@ public class PagesController {
         model.addAttribute("categories", categoryController.getAllCategories());
         return "index";
     }
-
-    /*events*/
-    /*allEvents.html*/
 
     @PostMapping("/allEvents")
     public String eventSubmit(@ModelAttribute Event event) {
@@ -218,5 +217,23 @@ public class PagesController {
     @ResponseBody
     public List<Event> getOtherEvents() {
         return eventController.getEventsByCategoryTitle(OTHER);
+    }
+
+    @GetMapping("/android/categories")
+    @ResponseBody
+    public List<Category> getAll() {
+        return categoryController.getAllCategories();
+    }
+
+    @GetMapping("/android/category")
+    @ResponseBody
+    public List<Event> getEvents(@RequestBody RequestDto dto) {
+        return eventService.getEventsByCategory(dto);
+    }
+
+    @PostMapping("/android/add")
+    public String addEvent(@RequestBody Event event) {
+        eventService.saveEvent(event);
+        return "index";
     }
 }
