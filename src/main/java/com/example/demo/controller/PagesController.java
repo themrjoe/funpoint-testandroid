@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ public class PagesController {
 
     private final EventController eventController;
     private final CategoryController categoryController;
+    private final EventService eventService;
 
     private static final String FOOD = "Еда";
     private static final String MUSIC = "Музыка";
@@ -214,5 +217,23 @@ public class PagesController {
     @ResponseBody
     public List<Event> getOtherEvents() {
         return eventController.getEventsByCategoryTitle(OTHER);
+    }
+
+    @GetMapping("/android/categories")
+    @ResponseBody
+    public List<Category> getAll() {
+        return categoryController.getAllCategories();
+    }
+
+    @GetMapping("/android/category")
+    @ResponseBody
+    public List<Event> getEvents(@RequestBody RequestDto dto) {
+        return eventService.getEventsByCategory(dto);
+    }
+
+    @PostMapping("/android/add")
+    public String addEvent(@RequestBody Event event) {
+        eventService.saveEvent(event);
+        return "index";
     }
 }

@@ -128,7 +128,7 @@
                                 Дата<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalDate">
-                                <input type="date" th:field="*{event_date}"
+                                <input type="date" th:field="*{getEventDate}"
                                        th:value="${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm')}"
                                        class="form-control form-control-sm" id="event_date" placeholder="">
                             </div>
@@ -524,10 +524,10 @@
                 <div class="card" th:each="event : ${events}"
                      style="margin-left: 22%; margin-top: 5px; color: #564037; background: #fef2e9; border-color: #564037">
                     <div class="d-flex w-100 class-header">
-                        <small class="mr-auto p-2" th:value="${event.id_event}" th:text="${event.id_event}"></small>
+                        <small class="mr-auto p-2" th:value="${event.getId}" th:text="${event.getId}"></small>
                         <h5 class="mr-auto" th:value="${event.title}" th:text="${event.title}"></h5>
-                        <small class="p-2" th:value="${event.event_time}" th:text="${event.event_time}"></small>
-                        <small class="p-2" th:value="${event.event_date}" th:text="${event.event_date}"></small>
+                        <small class="p-2" th:value="${event.getEventTime}" th:text="${event.getEventTime}"></small>
+                        <small class="p-2" th:value="${event.getEventDate}" th:text="${event.getEventDate}"></small>
                     </div>
                     <div class="card-body">
                         <blockquote class="d-flex w-100 blockquote">
