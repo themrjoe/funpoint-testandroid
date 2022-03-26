@@ -4,9 +4,7 @@ plugins {
     id 'application'
 }
 
-application {
-    mainClass = 'com.example.demo.DemoApplication'
-}
+mainClassName = 'com.example.demo.DemoApplication'
 
 repositories {
     mavenLocal()
