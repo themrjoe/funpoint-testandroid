@@ -226,7 +226,7 @@ public class PagesController {
         return categoryController.getAllCategories();
     }
 
-    @GetMapping("/android/category")
+    @PostMapping("/android/category")
     @ResponseBody
     public List<Event> getEvents(@RequestBody RequestDto dto) {
         return eventService.getEventsByCategory(dto);
