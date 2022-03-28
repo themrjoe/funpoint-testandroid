@@ -232,7 +232,7 @@ public class PagesController {
         return eventService.getEventsByCategory(dto);
     }
 
-    @PostMapping("/android/add")
+    @PostMapping(value = "/android/add", consumes = "application/json;charset=UTF-8")
     public String addEvent(@RequestBody Event event) {
         eventService.saveEvent(event);
         return "index";
