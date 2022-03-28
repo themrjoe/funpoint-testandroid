@@ -235,8 +235,8 @@ public class PagesController {
         return eventService.getEventsByCategory(dto);
     }
 
-    @PostMapping(value = "/android/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
+    @PostMapping(value = "/android/add")
+    @ResponseBody
     public void addEvent(@RequestBody Event event) {
         eventService.saveEvent(event);
     }
