@@ -5,6 +5,7 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
 import com.example.demo.service.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -232,7 +233,7 @@ public class PagesController {
         return eventService.getEventsByCategory(dto);
     }
 
-    @PostMapping(value = "/android/add", consumes = "application/json;charset=UTF-8")
+    @PostMapping(value = "/android/add")
     public String addEvent(@RequestBody Event event) {
         eventService.saveEvent(event);
         return "index";

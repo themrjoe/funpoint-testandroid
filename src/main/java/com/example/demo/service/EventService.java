@@ -6,10 +6,12 @@ import com.example.demo.repository.EventRepository;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -22,6 +24,7 @@ public class EventService {
     }
 
     public void saveEvent(Event event) {
+        log.info(event.getCategoryTitle());
         Category c = categoryRepository.getCategoryByTitle(event.getCategoryTitle());
         event.setCategory(c);
         eventRepository.save(event);
