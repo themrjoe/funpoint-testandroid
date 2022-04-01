@@ -31,7 +31,7 @@ public class Event {
     private String address;
 
     @Column(name = "event_date")
-    /*@DateTimeFormat(pattern = "dd-MM-yyyy")*/
+
     private String eventDate;
 
     @Column(name = "event_time")
@@ -39,6 +39,8 @@ public class Event {
 
     @Column(name = "price")
     private double price;
+
+    private String phoneNumber;
 
     @Column(name = "description")
     private String description;
