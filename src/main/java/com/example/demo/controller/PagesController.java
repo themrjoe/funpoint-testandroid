@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -238,12 +239,18 @@ public class PagesController {
     @PostMapping(value = "/android/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public void addEvent(@RequestBody Event event) {
-        eventService.saveEvent(event);
+        eventController.addEvent(event);
+    }
+
+    @PostMapping(value = "/android/addCategory", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void addCategory(@RequestBody Category category) {
+        categoryController.addCategory(category);
     }
 
     @GetMapping("/android/event/{id}")
     @ResponseBody
-    public Event getEventById(@PathVariable int id){
+    public Event getEventById(@PathVariable int id) {
         return eventService.getEventById(id);
     }
 }
