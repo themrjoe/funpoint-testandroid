@@ -3,12 +3,14 @@ package com.example.demo.entity;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@MappedSuperclass
 @Data
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
     @Id
@@ -17,6 +19,7 @@ public class BaseEntity {
     @LastModifiedDate
     private Date updated;
     @CreatedDate
+    @Column(updatable = false)
     private Date created;
     @Enumerated(EnumType.STRING)
     private Status status;
