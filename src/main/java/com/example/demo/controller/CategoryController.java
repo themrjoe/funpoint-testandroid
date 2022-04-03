@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.CategoryService;
 import com.example.demo.entity.Category;
+import com.example.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.RequestDto;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.EventRepository;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
