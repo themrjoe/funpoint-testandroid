@@ -6,6 +6,7 @@ import com.example.demo.entity.User;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,7 +28,7 @@ public class AuthController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
 
-    @PostMapping("/android/login")
+    @PostMapping(value = "/android/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity login(@RequestBody AuthDto authDto) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword()));
@@ -43,7 +44,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("android/register")
+    @PostMapping(value = "/android/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void register(@RequestBody User user) {
         userService.register(user);
