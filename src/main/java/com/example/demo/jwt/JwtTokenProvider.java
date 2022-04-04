@@ -28,7 +28,6 @@ public class JwtTokenProvider {
     private final UserDetailsService userDetailsService;
 
     private String secret;
-    private long expired;
 
     @PostConstruct
     protected void init() {
