@@ -241,9 +241,13 @@ public class PagesController {
 
     @PostMapping(value = "/android/addCategory", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void addCategory(@RequestBody Category category) {categoryController.addCategory(category);}
+    public void addCategory(@RequestBody Category category) {
+        categoryController.addCategory(category);
+    }
 
     @GetMapping("/android/event/{id}")
     @ResponseBody
-    public Event getEventById(@PathVariable int id) {return eventService.getEventById(id);}
+    public Event getEventById(@PathVariable int id) {
+        return eventService.getEventById(id);
+    }
 }
