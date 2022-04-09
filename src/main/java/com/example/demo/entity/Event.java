@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -46,5 +47,14 @@ public class Event {
     private String description;
 
     private String categoryTitle;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
+    private List<User> users;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    private User addByUser;
 }
 

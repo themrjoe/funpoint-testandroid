@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @CrossOrigin
 @Controller
 @RequiredArgsConstructor
@@ -46,7 +49,15 @@ public class AuthController {
 
     @PostMapping(value = "/android/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void register(@RequestBody User user) {
-        userService.register(user);
+    public ResponseEntity register(@RequestBody User user) {
+        User register = userService.register(user);
+        if (register == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("cause", "User already exist");
+            return ResponseEntity.badRequest().body(response);
+        }
+        Map<String, String> response = new HashMap<>();
+        response.put("cause", "Success");
+        return ResponseEntity.ok(response);
     }
 }

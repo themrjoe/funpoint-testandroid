@@ -23,5 +23,18 @@ public class User extends BaseEntity {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_events",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")})
+    private List<Event> events;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "addByUser")
+    private List<Event> addedEvents;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "addCatByUser")
+    private List<Category> addedCategories;
+
 }
 

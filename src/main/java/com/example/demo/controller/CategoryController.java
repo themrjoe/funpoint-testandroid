@@ -17,6 +17,10 @@ public class CategoryController {
         categoryService.addCategory(category);
     }
 
+    public void addCategoryByUser(Category category, String username) {
+        categoryService.addCategoryByUser(category, username);
+    }
+
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }

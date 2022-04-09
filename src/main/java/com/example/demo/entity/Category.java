@@ -31,6 +31,11 @@ public class Category {
     @JsonIgnore
     private List<Event> eventList;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    private User addCatByUser;
+
     @Override
     public String toString() {
         return "Category{" +
