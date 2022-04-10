@@ -105,4 +105,16 @@ public class UserService {
         }
         return user.getAddedCategories();
     }
+
+    public void deleteEventFromUserFavourites(int id, String username) {
+        User user = userRepository.findByUserName(username);
+        Event event = eventRepository.findById(id).orElse(null);
+        if (user == null || event == null || CollectionUtils.isEmpty(user.getEvents())) {
+            return;
+        }
+        List<Event> favEvents = user.getEvents();
+        favEvents.remove(event);
+        user.setEvents(favEvents);
+        userRepository.save(user);
+    }
 }

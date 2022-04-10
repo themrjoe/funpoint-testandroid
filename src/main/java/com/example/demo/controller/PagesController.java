@@ -245,7 +245,7 @@ public class PagesController {
     @GetMapping("/android/event/{id}")
     @ResponseBody
     public EventDto getEventById(@PathVariable int id, @RequestHeader("Authorization") String token) {
-        if (StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             return eventService.getEventById(id, "");
         }
         return eventService.getEventById(id, resolveUsernameByToken(token));
@@ -285,6 +285,12 @@ public class PagesController {
     @ResponseBody
     public List<Category> getAddedCategoryByUser(@RequestHeader("Authorization") String token) {
         return userService.getAddedCategories(resolveUsernameByToken(token));
+    }
+
+    @DeleteMapping("/user/delete_from_fav")
+    @ResponseBody
+    public void deleteFavouriteEvent(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
+        userService.deleteEventFromUserFavourites(dto.getIdEvent(), resolveUsernameByToken(token));
     }
 
     private String resolveUsernameByToken(String token) {
