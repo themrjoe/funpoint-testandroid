@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
