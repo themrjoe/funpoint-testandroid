@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin()
 @Controller
 @RequiredArgsConstructor
 public class PagesController {

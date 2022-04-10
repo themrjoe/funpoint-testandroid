@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin()
 @Controller
 @RequiredArgsConstructor
 public class AdminController {
