@@ -4,12 +4,14 @@ import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
 import com.example.demo.entity.User;
+import com.example.demo.entity.dto.EventDto;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +26,34 @@ public class EventService {
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
 
-    public Event getEventById(int id) {
-        return eventRepository.findById(id).orElse(null);
+    public EventDto getEventById(int id, String username) {
+        Event event = eventRepository.findById(id).orElse(null);
+        if (event == null) {
+            return null;
+        }
+        boolean favouriteForCurrentUser;
+        if (StringUtils.isBlank(username)) {
+            favouriteForCurrentUser = false;
+        } else {
+            User user = userRepository.findByUserName(username);
+            if (user == null) {
+                favouriteForCurrentUser = false;
+            } else {
+                favouriteForCurrentUser = user.getEvents().contains(event);
+            }
+        }
+        return EventDto.builder()
+                .id(event.getId())
+                .title(event.getTitle())
+                .address(event.getAddress())
+                .eventDate(event.getEventDate())
+                .eventTime(event.getEventTime())
+                .price(event.getPrice())
+                .phoneNumber(event.getPhoneNumber())
+                .description(event.getDescription())
+                .categoryTitle(event.getCategoryTitle())
+                .favouriteForCurrentUser(favouriteForCurrentUser)
+                .build();
     }
 
     public void saveEvent(Event event) {

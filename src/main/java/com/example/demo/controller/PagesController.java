@@ -3,12 +3,14 @@ package com.example.demo.controller;
 import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.entity.dto.EventDto;
 import com.example.demo.entity.dto.FavouriteDto;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.EventService;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -242,8 +244,11 @@ public class PagesController {
 
     @GetMapping("/android/event/{id}")
     @ResponseBody
-    public Event getEventById(@PathVariable int id) {
-        return eventService.getEventById(id);
+    public EventDto getEventById(@PathVariable int id, @RequestHeader("Authorization") String token) {
+        if (StringUtils.isBlank(token)){
+            return eventService.getEventById(id, "");
+        }
+        return eventService.getEventById(id, resolveUsernameByToken(token));
     }
 
     @PostMapping(value = "/add/event", consumes = MediaType.APPLICATION_JSON_VALUE)
