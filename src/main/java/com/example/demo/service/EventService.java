@@ -99,6 +99,10 @@ public class EventService {
         return eventRepository.getAllByCategory(categoryRepository.getById(requestDto.getCategoryId()));
     }
 
+    public Event getEvent(int id) {
+        return eventRepository.findById(id).orElse(null);
+    }
+
     public List<Event> getEventByCategoryTitle(String title) {
         return eventRepository.getEventByCategoryTitle(title);
     }

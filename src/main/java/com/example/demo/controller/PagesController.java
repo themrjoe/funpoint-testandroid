@@ -265,8 +265,9 @@ public class PagesController {
 
     @PostMapping(value = "/user/add_to_favourite", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void addEventToFavourite(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
+    public Event addEventToFavourite(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
         userService.addEventToFavourite(dto, resolveUsernameByToken(token));
+        return eventService.getEvent(dto.getIdEvent());
     }
 
     @GetMapping(value = "/user/get_favourite")
@@ -289,8 +290,9 @@ public class PagesController {
 
     @DeleteMapping("/user/delete_from_fav")
     @ResponseBody
-    public void deleteFavouriteEvent(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
+    public Event deleteFavouriteEvent(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
         userService.deleteEventFromUserFavourites(dto.getIdEvent(), resolveUsernameByToken(token));
+        return eventService.getEvent(dto.getIdEvent());
     }
 
     private String resolveUsernameByToken(String token) {
