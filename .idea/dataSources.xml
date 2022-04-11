@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/dbrunkfj1q28gm</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="carsup@localhost" uuid="7e3d7e24-179a-48cb-b11a-69506b202ccd">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/carsup</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
