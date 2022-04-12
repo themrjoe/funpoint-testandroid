@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.*;
+import com.example.demo.entity.dto.EventDto;
 import com.example.demo.entity.dto.FavouriteDto;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.RoleRepository;
@@ -24,6 +25,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final EventService eventService;
 
     public User register(User user) {
         if (userRepository.findByUserName(user.getUserName()) != null) {
@@ -57,7 +59,7 @@ public class UserService {
         log.info("User with id: {} deleted", id);
     }
 
-    public Event addEventToFavourite(FavouriteDto dto, String userName) {
+    public EventDto addEventToFavourite(FavouriteDto dto, String userName) {
         User user = userRepository.findByUserName(userName);
         Event event = eventRepository.findById(dto.getIdEvent()).orElse(null);
         if (user == null || event == null) {
@@ -69,7 +71,7 @@ public class UserService {
             events.add(event);
             user.setEvents(events);
             userRepository.save(user);
-            return event;
+            return eventService.getEventById(dto.getIdEvent(), userName);
         }
         List<Event> userEvents = user.getEvents();
         if (userEvents.contains(event)) {
@@ -78,7 +80,7 @@ public class UserService {
         userEvents.add(event);
         user.setEvents(userEvents);
         userRepository.save(user);
-        return event;
+        return eventService.getEventById(dto.getIdEvent(), userName);
     }
 
     public List<Event> getAddedEventsByUser(String username) {
@@ -108,7 +110,7 @@ public class UserService {
         return user.getAddedCategories();
     }
 
-    public Event deleteEventFromUserFavourites(int id, String username) {
+    public EventDto deleteEventFromUserFavourites(int id, String username) {
         User user = userRepository.findByUserName(username);
         Event event = eventRepository.findById(id).orElse(null);
         if (user == null || event == null || CollectionUtils.isEmpty(user.getEvents())) {
@@ -118,6 +120,6 @@ public class UserService {
         favEvents.remove(event);
         user.setEvents(favEvents);
         userRepository.save(user);
-        return event;
+        return eventService.getEventById(id, username);
     }
 }
