@@ -57,12 +57,12 @@ public class UserService {
         log.info("User with id: {} deleted", id);
     }
 
-    public void addEventToFavourite(FavouriteDto dto, String userName) {
+    public Event addEventToFavourite(FavouriteDto dto, String userName) {
         User user = userRepository.findByUserName(userName);
         Event event = eventRepository.findById(dto.getIdEvent()).orElse(null);
         if (user == null || event == null) {
             log.warn("Username or event id not exists: user id: {}, event id: {}", userName, dto.getIdEvent());
-            return;
+            return null;
         }
         if (CollectionUtils.isEmpty(user.getEvents())) {
             List<Event> events = new ArrayList<>();
@@ -72,11 +72,12 @@ public class UserService {
         }
         List<Event> userEvents = user.getEvents();
         if (userEvents.contains(event)) {
-            return;
+            return null;
         }
         userEvents.add(event);
         user.setEvents(userEvents);
         userRepository.save(user);
+        return event;
     }
 
     public List<Event> getAddedEventsByUser(String username) {
@@ -106,15 +107,16 @@ public class UserService {
         return user.getAddedCategories();
     }
 
-    public void deleteEventFromUserFavourites(int id, String username) {
+    public Event deleteEventFromUserFavourites(int id, String username) {
         User user = userRepository.findByUserName(username);
         Event event = eventRepository.findById(id).orElse(null);
         if (user == null || event == null || CollectionUtils.isEmpty(user.getEvents())) {
-            return;
+            return null;
         }
         List<Event> favEvents = user.getEvents();
         favEvents.remove(event);
         user.setEvents(favEvents);
         userRepository.save(user);
+        return event;
     }
 }
