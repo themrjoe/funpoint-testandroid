@@ -69,6 +69,7 @@ public class UserService {
             events.add(event);
             user.setEvents(events);
             userRepository.save(user);
+            return event;
         }
         List<Event> userEvents = user.getEvents();
         if (userEvents.contains(event)) {
