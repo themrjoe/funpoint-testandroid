@@ -36,5 +36,11 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "addCatByUser")
     private List<Category> addedCategories;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "moderatingBy")
+    private List<Event> moderatedEvents;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "moderatingBy")
+    private List<Category> moderatedCategories;
+
 }
 

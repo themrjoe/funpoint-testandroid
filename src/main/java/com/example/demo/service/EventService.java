@@ -3,8 +3,10 @@ package com.example.demo.service;
 import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.entity.ModeratingStatus;
 import com.example.demo.entity.User;
 import com.example.demo.entity.dto.EventDto;
+import com.example.demo.entity.dto.ModerationDto;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.UserRepository;
@@ -92,11 +94,11 @@ public class EventService {
     }
 
     public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+        return eventRepository.getAllByOnModerationIsFalse();
     }
 
     public List<Event> getEventsByCategory(RequestDto requestDto) {
-        return eventRepository.getAllByCategory(categoryRepository.getById(requestDto.getCategoryId()));
+        return eventRepository.getAllByCategoryAndOnModerationIsFalse(categoryRepository.getById(requestDto.getCategoryId()));
     }
 
     public Event getEvent(int id) {
@@ -122,5 +124,63 @@ public class EventService {
         Category c = categoryRepository.getById(category_id);
         e.setCategory(c);
         eventRepository.save(e);
+    }
+
+    public List<Event> getModerationEvents() {
+        return eventRepository.getAllByOnModerationIsTrueAndDeclinedIsFalse();
+    }
+
+    public Event moderate(ModerationDto moderationDto, String username) {
+        User user = userRepository.findByUserName(username);
+        Event event = eventRepository.findById(moderationDto.getEventId()).orElse(null);
+        if (event == null) {
+            return null;
+        }
+        switch (moderationDto.getStatus()) {
+            case "ACCEPTED": {
+                event.setOnModeration(false);
+                event.setModeratingStatus(ModeratingStatus.ACCEPTED);
+                event.setModeratingBy(user);
+                event.setModeratingMessage("Событие успешно прошло модерацию. " +
+                        "Можете насладиться Вашим высером сполна и позвать Ваших друзей чтобы поесть оборнейшего дерьма! " +
+                        "С огромным неуважением, Администрация!" +
+                        "Идите нахуй! :)");
+                return enrichEventUser(event, user);
+            }
+            case "DECLINED": {
+                event.setOnModeration(true);
+                event.setDeclined(true);
+                event.setModeratingBy(user);
+                event.setModeratingMessage(moderationDto.getMessage());
+                event.setModeratingStatus(ModeratingStatus.DECLINED);
+                return enrichEventUser(event, user);
+            }
+            case "REWORK": {
+                event.setOnModeration(true);
+                event.setModeratingStatus(ModeratingStatus.REWORK);
+                event.setModeratingMessage(moderationDto.getMessage());
+                event.setModeratingBy(user);
+                return enrichEventUser(event, user);
+            }
+            default:
+                return null;
+        }
+    }
+
+    private Event enrichEventUser(Event event, User user) {
+        if (CollectionUtils.isEmpty(user.getModeratedEvents())) {
+            List<Event> moderatedEvents = new ArrayList<>();
+            moderatedEvents.add(event);
+            user.setModeratedEvents(moderatedEvents);
+            eventRepository.save(event);
+            userRepository.save(user);
+            return event;
+        }
+        List<Event> moderatedEvents = user.getModeratedEvents();
+        moderatedEvents.add(event);
+        user.setModeratedEvents(moderatedEvents);
+        eventRepository.save(event);
+        userRepository.save(user);
+        return eventRepository.findById(event.getId()).orElse(null);
     }
 }

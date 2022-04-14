@@ -10,7 +10,9 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     List<Event> getEventByCategoryTitle(String title);
 
-    Event getEventByTitle(String title);
+    List<Event> getAllByCategoryAndOnModerationIsFalse(Category category);
 
-    List<Event> getAllByCategory(Category category);
+    List<Event> getAllByOnModerationIsTrueAndDeclinedIsFalse();
+
+    List<Event> getAllByOnModerationIsFalse();
 }

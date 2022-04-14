@@ -49,12 +49,26 @@ public class Event {
     private String categoryTitle;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> users;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
     @JsonIgnore
     private User addByUser;
+
+    private boolean onModeration = true;
+
+    @Enumerated(EnumType.STRING)
+    private ModeratingStatus moderatingStatus;
+
+    private String moderatingMessage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_moderating")
+    @JsonIgnore
+    private User moderatingBy;
+
+    private boolean declined = false;
 }
 

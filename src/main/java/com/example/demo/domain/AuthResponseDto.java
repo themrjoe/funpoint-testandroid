@@ -12,4 +12,5 @@ public class AuthResponseDto {
     private String firstName;
     private String lastName;
     private String email;
+    private boolean isAdmin;
 }

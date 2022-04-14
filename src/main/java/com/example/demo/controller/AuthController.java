@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.AuthDto;
 import com.example.demo.domain.AuthResponseDto;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.UserService;
@@ -40,7 +41,7 @@ public class AuthController {
                 throw new UsernameNotFoundException("User with username: " + authDto.getUsername() + " not found");
             }
             String token = jwtTokenProvider.createToken(authDto.getUsername(), user.getRoles());
-            AuthResponseDto responseDto = new AuthResponseDto(user.getUserName(), token, user.getFirstName(), user.getLastName(), user.getEmail());
+            AuthResponseDto responseDto = new AuthResponseDto(user.getUserName(), token, user.getFirstName(), user.getLastName(), user.getEmail(), isAdmin(user));
             return ResponseEntity.ok(responseDto);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
@@ -59,5 +60,16 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
         response.put("cause", "Success");
         return ResponseEntity.ok(response);
+    }
+
+    private boolean isAdmin(User user) {
+        boolean isAdmin = false;
+        for (Role role : user.getRoles()) {
+            if (role.getName().equals("ROLE_ADMIN")) {
+                isAdmin = true;
+                break;
+            }
+        }
+        return isAdmin;
     }
 }
