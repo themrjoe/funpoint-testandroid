@@ -54,7 +54,7 @@ public class AuthController {
         User register = userService.register(user);
         if (register == null) {
             Map<String, String> response = new HashMap<>();
-            response.put("cause", "User already exist");
+            response.put("cause", "Пользователь с таким именем уже существует");
             return ResponseEntity.badRequest().body(response);
         }
         Map<String, String> response = new HashMap<>();

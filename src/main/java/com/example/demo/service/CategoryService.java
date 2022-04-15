@@ -10,6 +10,7 @@ import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class CategoryService {
     }
 
     public List<Category> getModerationCategories() {
-        return categoryRepository.getAllByOnModerationIsTrueAndDeclinedIsFalse();
+        return categoryRepository.getAllByOnModerationIsTrueAndDeclinedIsFalseAndModeratingStatusIsNull();
     }
 
     public List<Category> getAllCategories() {
@@ -78,9 +79,9 @@ public class CategoryService {
                 category.setOnModeration(false);
                 category.setModeratingStatus(ModeratingStatus.ACCEPTED);
                 category.setModeratingBy(user);
-                category.setModeratingMessage("Событие успешно прошло модерацию. " +
+                category.setModeratingMessage("Категория успешно прошла модерацию. " +
                         "Можете насладиться Вашим высером сполна и позвать Ваших друзей чтобы поесть оборнейшего дерьма! " +
-                        "С огромным неуважением, Администрация!" +
+                        "С огромным неуважением, Администрация! " +
                         "Идите нахуй! :)");
                 return enrichEventUser(category, user);
             }
@@ -119,5 +120,19 @@ public class CategoryService {
         categoryRepository.save(category);
         userRepository.save(user);
         return categoryRepository.findById(category.getId_category()).orElse(null);
+    }
+
+    public void reworkCategory(Category reworkedCategory) {
+        Category category = categoryRepository.findById(reworkedCategory.getId_category()).orElse(null);
+        if (category == null) {
+            return;
+        }
+        category.setOnModeration(true);
+        category.setModeratingMessage(null);
+        category.setDeclined(false);
+        category.setModeratingStatus(null);
+        category.setTitle(reworkedCategory.getTitle());
+        category.setDescription(reworkedCategory.getDescription());
+        addCategory(category);
     }
 }

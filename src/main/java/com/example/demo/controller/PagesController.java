@@ -293,6 +293,18 @@ public class PagesController {
         return userService.deleteEventFromUserFavourites(dto.getIdEvent(), resolveUsernameByToken(token));
     }
 
+    @PostMapping(value = "/user/rework_event", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void reworkEvent(@RequestBody Event event) {
+        eventService.reworkEvent(event);
+    }
+
+    @PostMapping(value = "/user/rework_category", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void reworkCategory(@RequestBody Category category) {
+        categoryController.reworkCategory(category);
+    }
+
     private String resolveUsernameByToken(String token) {
         return jwtTokenProvider.getUserName(jwtTokenProvider.resolveTokenFromHeader(token));
     }

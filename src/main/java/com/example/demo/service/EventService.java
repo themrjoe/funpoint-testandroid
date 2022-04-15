@@ -127,7 +127,7 @@ public class EventService {
     }
 
     public List<Event> getModerationEvents() {
-        return eventRepository.getAllByOnModerationIsTrueAndDeclinedIsFalse();
+        return eventRepository.getAllByOnModerationIsTrueAndDeclinedIsFalseAndModeratingStatusIsNull();
     }
 
     public Event moderate(ModerationDto moderationDto, String username) {
@@ -165,6 +165,29 @@ public class EventService {
             default:
                 return null;
         }
+    }
+
+    public void reworkEvent(Event reworkedEvent) {
+        Event event = eventRepository.findById(reworkedEvent.getId()).orElse(null);
+        if (event == null) {
+            return;
+        }
+        List<Event> eventList = event.getCategory().getEventList();
+        eventList.remove(event);
+        event.setCategory(null);
+        event.setOnModeration(true);
+        event.setModeratingMessage(null);
+        event.setModeratingStatus(null);
+        event.setDeclined(false);
+        event.setTitle(reworkedEvent.getTitle());
+        event.setAddress(reworkedEvent.getAddress());
+        event.setEventDate(reworkedEvent.getEventDate());
+        event.setEventTime(reworkedEvent.getEventTime());
+        event.setPrice(reworkedEvent.getPrice());
+        event.setPhoneNumber(reworkedEvent.getPhoneNumber());
+        event.setDescription(reworkedEvent.getDescription());
+        event.setCategoryTitle(reworkedEvent.getCategoryTitle());
+        saveEvent(event);
     }
 
     private Event enrichEventUser(Event event, User user) {

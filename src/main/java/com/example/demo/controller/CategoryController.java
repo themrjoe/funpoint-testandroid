@@ -25,4 +25,7 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
+    public void reworkCategory(Category category) {
+        categoryService.reworkCategory(category);
+    }
 }
