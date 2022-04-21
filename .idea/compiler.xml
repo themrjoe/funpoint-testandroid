@@ -6,6 +6,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/2.6.5/dced3550504fffed49b76972b4c4aed274a623ee/spring-boot-configuration-processor-2.6.5.jar" />
         </processorPath>
         <module name="demo.main" />
       </profile>

@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "com.example.funpoint",
+      "type": "com.example.demo.configuration.ApplicationProperties",
+      "sourceType": "com.example.demo.configuration.ApplicationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "com.example.funpoint.jwt-token-expired",
+      "type": "java.lang.Long",
+      "sourceType": "com.example.demo.configuration.ApplicationProperties"
+    },
+    {
+      "name": "com.example.funpoint.jwt-token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.configuration.ApplicationProperties"
+    }
+  ],
+  "hints": []
+}

@@ -3,18 +3,22 @@ package com.example.demo.controller;
 import com.example.demo.domain.RequestDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Event;
+import com.example.demo.entity.dto.EventDto;
+import com.example.demo.entity.dto.FavouriteDto;
+import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.EventService;
+import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @RequiredArgsConstructor
@@ -23,6 +27,8 @@ public class PagesController {
     private final EventController eventController;
     private final CategoryController categoryController;
     private final EventService eventService;
+    private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     private static final String FOOD = "Еда";
     private static final String MUSIC = "Музыка";
@@ -236,21 +242,70 @@ public class PagesController {
         return eventService.getEventsByCategory(dto);
     }
 
-    @PostMapping(value = "/android/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ResponseBody
-    public void addEvent(@RequestBody Event event) {
-        eventController.addEvent(event);
-    }
-
-    @PostMapping(value = "/android/addCategory", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public void addCategory(@RequestBody Category category) {
-        categoryController.addCategory(category);
-    }
-
     @GetMapping("/android/event/{id}")
     @ResponseBody
-    public Event getEventById(@PathVariable int id) {
-        return eventService.getEventById(id);
+    public EventDto getEventById(@PathVariable int id, @RequestHeader("Authorization") String token) {
+        if (StringUtils.isBlank(token)) {
+            return eventService.getEventById(id, "");
+        }
+        return eventService.getEventById(id, resolveUsernameByToken(token));
+    }
+
+    @PostMapping(value = "/add/event", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void addEvent(@RequestBody Event event, @RequestHeader("Authorization") String token) {
+        eventService.addEventByUser(event, resolveUsernameByToken(token));
+    }
+
+    @PostMapping(value = "/add/category", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void addCategory(@RequestBody Category category, @RequestHeader("Authorization") String token) {
+        categoryController.addCategoryByUser(category, resolveUsernameByToken(token));
+    }
+
+    @PostMapping(value = "/user/add_to_favourite", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public EventDto addEventToFavourite(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
+        return userService.addEventToFavourite(dto, resolveUsernameByToken(token));
+    }
+
+    @GetMapping(value = "/user/get_favourite")
+    @ResponseBody
+    public List<Event> getFavouriteEvents(@RequestHeader("Authorization") String token) {
+        return userService.getFavouriteEventsByUserName(resolveUsernameByToken(token));
+    }
+
+    @GetMapping(value = "/user/get_added_events")
+    @ResponseBody
+    public List<Event> getAddedByUser(@RequestHeader("Authorization") String token) {
+        return userService.getAddedEventsByUser(resolveUsernameByToken(token));
+    }
+
+    @GetMapping(value = "/user/get_added_categories")
+    @ResponseBody
+    public List<Category> getAddedCategoryByUser(@RequestHeader("Authorization") String token) {
+        return userService.getAddedCategories(resolveUsernameByToken(token));
+    }
+
+    @DeleteMapping(value = "/user/delete_from_fav", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public EventDto deleteFavouriteEvent(@RequestHeader("Authorization") String token, @RequestBody FavouriteDto dto) {
+        return userService.deleteEventFromUserFavourites(dto.getIdEvent(), resolveUsernameByToken(token));
+    }
+
+    @PostMapping(value = "/user/rework_event", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void reworkEvent(@RequestBody Event event) {
+        eventService.reworkEvent(event);
+    }
+
+    @PostMapping(value = "/user/rework_category", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void reworkCategory(@RequestBody Category category) {
+        categoryController.reworkCategory(category);
+    }
+
+    private String resolveUsernameByToken(String token) {
+        return jwtTokenProvider.getUserName(jwtTokenProvider.resolveTokenFromHeader(token));
     }
 }

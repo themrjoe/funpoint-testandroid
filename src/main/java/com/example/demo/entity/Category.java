@@ -31,6 +31,25 @@ public class Category {
     @JsonIgnore
     private List<Event> eventList;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    private User addCatByUser;
+
+    private boolean onModeration = true;
+
+    @Enumerated(EnumType.STRING)
+    private ModeratingStatus moderatingStatus;
+
+    private String moderatingMessage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_moderating")
+    @JsonIgnore
+    private User moderatingBy;
+
+    private boolean declined = false;
+
     @Override
     public String toString() {
         return "Category{" +

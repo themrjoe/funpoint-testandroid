@@ -15,3 +15,7 @@ spring:
     driverClassName: org.postgresql.Driver
 server:
   port: 8081
+
+com.example.funpoint:
+  jwt-token-secret: funpointjwtapp
+  jwt-token-expired: 36000000
