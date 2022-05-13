@@ -24,18 +24,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PagesController {
 
-    private final EventController eventController;
-    private final CategoryController categoryController;
-    private final EventService eventService;
-    private final UserService userService;
-    private final JwtTokenProvider jwtTokenProvider;
-
     private static final String FOOD = "Еда";
     private static final String MUSIC = "Музыка";
     private static final String DANCE = "Танцы";
     private static final String SPORT = "Спорт";
     private static final String EDU = "Образование";
     private static final String OTHER = "Другое";
+    private final EventController eventController;
+    private final CategoryController categoryController;
+    private final EventService eventService;
+    private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/")
     public String addEventByIndex(@ModelAttribute Event event) {

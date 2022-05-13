@@ -2,7 +2,6 @@ package com.example.demo.entity.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.core.SpringVersion;
 
 @Data
 @Builder

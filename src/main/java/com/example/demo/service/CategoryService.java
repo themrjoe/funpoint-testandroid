@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Event;
 import com.example.demo.entity.ModeratingStatus;
 import com.example.demo.entity.User;
 import com.example.demo.entity.dto.ModerationCategoryDto;
@@ -10,7 +9,6 @@ import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
