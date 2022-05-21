@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://fun-point-app.herokuapp.com")
 @Controller
 @RequiredArgsConstructor
 public class PagesController {
