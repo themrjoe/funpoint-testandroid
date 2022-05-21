@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://fun-point-app.herokuapp.com")
 @Controller
 @RequiredArgsConstructor
 public class AuthController {

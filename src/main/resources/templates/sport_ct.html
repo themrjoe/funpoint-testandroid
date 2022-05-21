@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <style>
         body {
             background: url("img/background_allEvents-1.png");
@@ -13,48 +13,59 @@
             background-size: 73%;
             background-repeat: no-repeat;
         }
-        .categories-right-col{
+
+        .categories-right-col {
             width: 345px;
         }
-        .category-select{
+
+        .category-select {
             max-width: 100% !important;
         }
-        li.categories__menu>a>button{
+
+        li.categories__menu > a > button {
             font-family: sans-serif;
             margin-left: 70px;
         }
-        ul.categories.flex-column.justify-content-end{
+
+        ul.categories.flex-column.justify-content-end {
             background: url("img/background_ct-2.png");
             background-size: cover;
         }
-        ul.categories{
-        padding-bottom: 35px;
+
+        ul.categories {
+            padding-bottom: 35px;
         }
-        @media screen and (max-width:995px){
-            .categories-right-col{
+
+        @media screen and (max-width: 995px) {
+            .categories-right-col {
                 width: 100%;
                 left: 0;
                 margin-top: 15px;
             }
-            body{
+
+            body {
                 background: none;
             }
         }
-        @media screen and (max-width:955px) {
-            header.header>.container>.row>.col-lg-3{
+
+        @media screen and (max-width: 955px) {
+            header.header > .container > .row > .col-lg-3 {
                 display: flex;
                 justify-content: center;
             }
-            header.header>.container>.row>.col-lg-9>nav>ul{
+
+            header.header > .container > .row > .col-lg-9 > nav > ul {
                 justify-content: center !important;
             }
-            .offer{
+
+            .offer {
                 margin-top: 20% !important;
                 width: 100% !important;
             }
         }
-        @media screen and (max-width:525px){
-            header.header>.container>.row>.col-lg-9>nav>ul{
+
+        @media screen and (max-width: 525px) {
+            header.header > .container > .row > .col-lg-9 > nav > ul {
                 flex-direction: column;
                 align-items: center;
             }
@@ -63,11 +74,11 @@
     <title>FunPoint</title>
     <link href="./sport_ct_files/css2" rel="stylesheet">
     <link href="./sport_ct_files/css2(1)" rel="stylesheet">
-    <link rel="stylesheet" href="./sport_ct_files/bootstrap.min.css">
-    <link rel="stylesheet" href="./sport_ct_files/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./sport_ct_files/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="sport_ct_files/sport.css">
-    <link rel="stylesheet" href="css/bootstrap-glyphicons.css">
+    <link href="./sport_ct_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./sport_ct_files/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="./sport_ct_files/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="sport_ct_files/sport.css" rel="stylesheet">
+    <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
 
 </head>
 
@@ -78,7 +89,7 @@
 <script src="./sport_ct_files/bootstrap.min.js.Без названия"></script>
 
 <div class="container">
-    <form enctype="multipart/form-data" action="#" th:action="@{/sport}" th:object="${event}" method="post">
+    <form action="#" enctype="multipart/form-data" method="post" th:action="@{/sport}" th:object="${event}">
         <div class="modal fade" id="EventModalFade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -86,86 +97,87 @@
                         <h4 class="modal-title">
                             Добавление события
                         </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Название события<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalTitle">
-                                <input th:field="*{title}" type="text" class="form-control form-control-sm" id="title"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="title" placeholder="" th:field="*{title}"
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Категория события<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalTitle">
                                 <select class="category-select col-sm-7 form-control form-control-sm" id="categoryTitle"
-                                th:field="*{categoryTitle}" type="text">
-                            <option th:each="category: ${categories}" th:value="${category.title}"
-                                    th:text="${category.title}"></option>
-                            </select>  
+                                        th:field="*{categoryTitle}" type="text">
+                                    <option th:each="category: ${categories}" th:text="${category.title}"
+                                            th:value="${category.title}"></option>
+                                </select>
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Адрес<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalAddress">
-                                <input th:field="*{address}" type="text" class="form-control form-control-sm" id="address"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="address" placeholder=""
+                                       th:field="*{address}"
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Дата<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalDate">
-                                <input type="date" th:field="*{getEventDate}"
-                                       th:value="${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm')}"
-                                       class="form-control form-control-sm" id="event_date" placeholder="">
+                                <input class="form-control form-control-sm" id="event_date"
+                                       placeholder=""
+                                       th:field="*{getEventDate}" th:value="${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm')}" type="date">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Время<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalTime">
-                                <input type="time" th:field="*{timeHelper}"
-                                       th:value="${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm')}"
-                                       class="form-control form-control-sm" id="timeHelper" placeholder="">
+                                <input class="form-control form-control-sm" id="timeHelper"
+                                       placeholder=""
+                                       th:field="*{timeHelper}" th:value="${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm')}" type="time">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Цена
                             </label>
                             <div class="col-sm-8 eventModalPrice">
-                                <input th:field="*{price}" type="number" class="form-control form-control-sm" id="price"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="price" placeholder="" th:field="*{price}"
+                                       type="number">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                                 Описание<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 eventModalDescription">
-                                <textarea th:field="*{description}" type="text" class="form-control form-control-sm"
-                                          id="description"
-                                          rows="4"></textarea>
+                                <textarea class="form-control form-control-sm" id="description" rows="4"
+                                          th:field="*{description}"
+                                          type="text"></textarea>
                             </div>
                         </div>
-    
+
                         <!--<div class="form-group row">
                             <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
                                 Соц.сети/Сайт
@@ -183,17 +195,17 @@
                                 <input type="text" class="form-control form-control-sm" id="colEventEMail" placeholder="">
                             </div>
                         </div>-->
-    
+
                         <div class="important-description row">
                             <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
                         </div>
                     </div>
-    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
                             Закрыть
                         </button>
-                        <button type="submit" class="btn btn-primary " value="Submit">
+                        <button class="btn btn-primary " type="submit" value="Submit">
                             Отправить
                         </button>
                     </div>
@@ -201,7 +213,7 @@
             </div>
         </div>
     </form>
-    
+
     <form>
         <div class="modal fade" id="EditEventModalFade">
             <div class="modal-dialog">
@@ -210,75 +222,80 @@
                         <h4 class="modal-title">
                             Редактирование события
                         </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Название события<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalTitle">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventTitle" placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventTitle" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Категория события<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalCategory">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventCategory"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventCategory" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Адрес<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalAddress">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventAddress" placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventAddress" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Дата<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalDate">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventDate" placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventDate" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Время<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalTime">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventTime" placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventTime" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Цена
                             </label>
                             <div class="col-sm-8 editEventModalPrice">
-                                <input type="text" class="form-control form-control-sm" id="colEditEventPrice" placeholder="">
+                                <input class="form-control form-control-sm" id="colEditEventPrice" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EditEventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="EditEventModalFade">
                                 Описание<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-8 editEventModalDescription">
-                            <textarea type="text" class="form-control form-control-sm" id="colEditEventDescription"
-                                      rows="4"></textarea>
+                            <textarea class="form-control form-control-sm" id="colEditEventDescription" rows="4"
+                                      type="text"></textarea>
                             </div>
                         </div>
-    
+
                         <!--<div class="form-group row">
                             <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
                                 Соц.сети/Сайт
@@ -296,17 +313,17 @@
                                 <input type="text" class="form-control form-control-sm" id="colEventEMail" placeholder="">
                             </div>
                         </div>-->
-    
+
                         <div class="important-description row">
                             <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
                         </div>
                     </div>
-    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
                             Закрыть
                         </button>
-                        <button type="button" class="btn btn-primary sendEvent">
+                        <button class="btn btn-primary sendEvent" type="button">
                             Отправить
                         </button>
                     </div>
@@ -314,39 +331,40 @@
             </div>
         </div>
     </form>
-    
+
     <form>
-        <div class="modal fade" id="EditCategoryModalFade" aria-hidden="true" style="display: none;">
+        <div aria-hidden="true" class="modal fade" id="EditCategoryModalFade" style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
                             Редактирование категории
                         </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                            <label class="col-sm-5 col-form-label col-form-label-sm" for="EventModalFade">
                                 Название категории<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control form-control-sm" id="colEditCategoryTitle"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="colEditCategoryTitle" placeholder=""
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                            <label class="col-sm-5 col-form-label col-form-label-sm" for="EventModalFade">
                                 Описание<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <textarea type="text" class="form-control form-control-sm" id="colEditCategoryDescription"
-                                          rows="4"></textarea>
+                                <textarea class="form-control form-control-sm" id="colEditCategoryDescription"
+                                          rows="4"
+                                          type="text"></textarea>
                             </div>
                         </div>
-    
+
                         <!--<div class="form-group row">
                             <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
                                 Ваш E-Mail<span class="important-field">*</span>
@@ -355,22 +373,22 @@
                                 <input type="text" class="form-control form-control-sm" id="colCategoryEMail" placeholder="">
                             </div>
                         </div>-->
-    
+
                         <div class="important-description row">
                             <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
                         </div>
                     </div>
-    
+
                     <div class="alert row">
                         При редактировании все данные перепроверяются. Если они не соответствуют действительности и/или
                         являются оскорбительными, то администрация оставляет за собой право не изменять категорию!
                     </div>
-    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
                             Закрыть
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button class="btn btn-primary" type="button">
                             Отправить
                         </button>
                     </div>
@@ -378,39 +396,41 @@
             </div>
         </div>
     </form>
-    
-    <form enctype="multipart/form-data" action="#" th:action="@{/sport}" method="post" th:object="${category}">
-        <div class="modal fade" id="CategoryModalFade" aria-hidden="true" style="display: none;">
+
+    <form action="#" enctype="multipart/form-data" method="post" th:action="@{/sport}" th:object="${category}">
+        <div aria-hidden="true" class="modal fade" id="CategoryModalFade" style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
                             Добавление категории
                         </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                            <label class="col-sm-5 col-form-label col-form-label-sm" for="EventModalFade">
                                 Название категории<span class="important-field">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input th:field="*{title}" type="text" class="form-control form-control-sm" id="colCategoryTitle"
-                                       placeholder="">
+                                <input class="form-control form-control-sm" id="colCategoryTitle" placeholder=""
+                                       th:field="*{title}"
+                                       type="text">
                             </div>
                         </div>
-    
+
                         <div class="form-group row">
-                            <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
+                            <label class="col-sm-5 col-form-label col-form-label-sm" for="EventModalFade">
                                 Описание
                             </label>
                             <div class="col-sm-7">
-                                <textarea th:field="*{description}" type="text" class="form-control form-control-sm" id="colCategoryDescription"
-                                          rows="4"></textarea>
+                                <textarea class="form-control form-control-sm" id="colCategoryDescription" rows="4"
+                                          th:field="*{description}"
+                                          type="text"></textarea>
                             </div>
                         </div>
-    
+
                         <!--<div class="form-group row">
                             <label for="EventModalFade" class="col-sm-5 col-form-label col-form-label-sm">
                                 Ваш E-Mail<span class="important-field">*</span>
@@ -419,22 +439,23 @@
                                 <input type="text" class="form-control form-control-sm" id="colCategoryEMail" placeholder="">
                             </div>
                         </div>-->
-    
+
                         <div class="important-description row">
                             <span class="important-field">*</span>&nbsp;-&nbsp;обязательное поле для ввода
                         </div>
                     </div>
-    
+
                     <div class="alert row">
-                        Добавляя категорию учитывайте тот факт, что если в течении 90 дней не будет опубликовано событий под
+                        Добавляя категорию учитывайте тот факт, что если в течении 90 дней не будет опубликовано событий
+                        под
                         данную категорию, то она будет удалена!
                     </div>
-    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
                             Закрыть
                         </button>
-                        <button type="submit" class="btn btn-primary">
+                        <button class="btn btn-primary" type="submit">
                             Отправить
                         </button>
                     </div>
@@ -442,22 +463,23 @@
             </div>
         </div>
     </form>
-    
+
     <form>
         <div class="modal fade" id="someEvent">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#EditEventModalFade" data-dismiss="modal">
+                        <button class="btn btn-link" data-dismiss="modal" data-target="#EditEventModalFade" data-toggle="modal"
+                                type="button">
                             <span class="glyphicon glyphicon-pencil" style="color: grey"></span>
                         </button>
                         <h4 class="modal-title" id="sportTitle">
                             Тут название
                         </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                     </div>
                     <div class="modal-body">
-    
+
                         <ul class="list-group">
                             <li class="list-group item">Тут адрес</li>
                             <li class="list-group item">Тут дата и время</li>
@@ -465,11 +487,11 @@
                             <li class="list-group item">Тут описание</li>
                             <li class="list-group item">Тут их оффициальный сайт, или соцсети</li>
                         </ul>
-    
+
                     </div>
-    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        <button class="btn btn-primary" data-dismiss="modal" type="button">
                             Закрыть
                         </button>
                     </div>
@@ -477,41 +499,41 @@
             </div>
         </div>
     </form>
-    
+
     <script>
         $(function () {
             addEvent();
         });
     </script>
-    
-    <header id="header" class="header">
+
+    <header class="header" id="header">
         <div class="container">
-    
+
             <div class="row">
                 <div class="col-lg-3">
-                    <img src="./sport_ct_files/logo.png" alt="FunPoint" class="logo">
+                    <img alt="FunPoint" class="logo" src="./sport_ct_files/logo.png">
                 </div>
                 <div class="col-lg-9 ml-auto">
                     <nav>
                         <ul class="menu d-flex justify-content-end">
                             <li class="menu__item">
-                                <a th:href="@{~/}" href="index.html">
-                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                <a href="index.html" th:href="@{~/}">
+                                    <button class="btn btn-link" data-target="#" data-toggle="modal" type="button">
                                         Главная
                                     </button>
                                 </a>
                             </li>
                             <li class="menu__item">
-                                <a th:href="@{~/categories}" href="categories.html">
-                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                <a href="categories.html" th:href="@{~/categories}">
+                                    <button class="btn btn-link" data-target="#" data-toggle="modal" type="button">
                                         Категории
                                     </button>
                                 </a>
                             </li>
                             <li class="menu__item">
                                 <a href="#">
-                                    <button type="button" class="btn btn-link" data-toggle="modal"
-                                            data-target="#EventModalFade">
+                                    <button class="btn btn-link" data-target="#EventModalFade" data-toggle="modal"
+                                            type="button">
                                         Добавить событие
                                     </button>
                                 </a>
@@ -522,29 +544,29 @@
             </div>
         </div>
     </header>
-    
+
     <div class="row">
         <div class="col-lg-8">
             <div class="col-sm-12">
-                <div class="card" th:each="event : ${events}"
-                     style="margin-left: 22%; margin-top: 5px; color: #564037; background: #fef2e9; border-color: #564037">
+                <div class="card" style="margin-left: 22%; margin-top: 5px; color: #564037; background: #fef2e9; border-color: #564037"
+                     th:each="event : ${events}">
                     <div class="d-flex w-100 class-header">
-                        <small class="mr-auto p-2" th:value="${event.getId}" th:text="${event.getId}"></small>
-                        <h5 class="mr-auto" th:value="${event.title}" th:text="${event.title}"></h5>
-                        <small class="p-2" th:value="${event.getEventTime}" th:text="${event.getEventTime}"></small>
-                        <small class="p-2" th:value="${event.getEventDate}" th:text="${event.getEventDate}"></small>
+                        <small class="mr-auto p-2" th:text="${event.getId}" th:value="${event.getId}"></small>
+                        <h5 class="mr-auto" th:text="${event.title}" th:value="${event.title}"></h5>
+                        <small class="p-2" th:text="${event.getEventTime}" th:value="${event.getEventTime}"></small>
+                        <small class="p-2" th:text="${event.getEventDate}" th:value="${event.getEventDate}"></small>
                     </div>
                     <div class="card-body">
                         <blockquote class="d-flex w-100 blockquote">
-                            <p class="mr-auto p-2" th:value="${event.address}" th:text="${event.address}"></p>
-                            <p class="p-2" th:value="${event.price}" th:text="${event.price}"></p>
+                            <p class="mr-auto p-2" th:text="${event.address}" th:value="${event.address}"></p>
+                            <p class="p-2" th:text="${event.price}" th:value="${event.price}"></p>
                             <p class="p-2">грн.</p>
                         </blockquote>
                         <footer class="d-flex w-100 blockquote-footer">
-                            <p th:value="${event.description}" th:text="${event.description}" class="mr-auto mb-1"></p>
+                            <p class="mr-auto mb-1" th:text="${event.description}" th:value="${event.description}"></p>
                             <p class="p-2">
-                                <button type="button" class="btn btn-link" data-toggle="modal"
-                                        data-target="#EditEventModalFade">
+                                <button class="btn btn-link" data-target="#EditEventModalFade" data-toggle="modal"
+                                        type="button">
                                     <span class="glyphicon glyphicon-pencil align-items-end justify-content-end"
                                           style="color: gray; font-size: 18px"></span>
                                 </button>
@@ -554,61 +576,62 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="col-lg-4">
             <nav class="position-fixed">
                 <ul class="categories-right-col categories flex-column justify-content-end">
                     <li class="categories__menu">
-                        <a th:href="@{~/food}" href="food_ct.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="food_ct.html" th:href="@{~/food}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Еда
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
-                        <a th:href="@{~/music}" href="music_ct.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="music_ct.html" th:href="@{~/music}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Музыка
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
-                        <a th:href="@{~/dance}" href="dance_ct.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="dance_ct.html" th:href="@{~/dance}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Танцы
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
-                        <a th:href="@{~/sport}" href="sport_ct.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="sport_ct.html" th:href="@{~/sport}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Спорт
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
-                        <a th:href="@{~/education}" href="education_ct.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="education_ct.html" th:href="@{~/education}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Образование
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
-                        <a th:href="@{~/other}" href="other.html">
-                            <button type="button" class="btn btn-link" data-toggle="" data-target="" >
+                        <a href="other.html" th:href="@{~/other}">
+                            <button class="btn btn-link" data-target="" data-toggle="" type="button">
                                 Другое
                             </button>
                         </a>
                     </li>
-    
+
                     <li class="categories__menu">
                         <a href="#">
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#CategoryModalFade">
+                            <button class="btn btn-link" data-target="#CategoryModalFade" data-toggle="modal"
+                                    type="button">
                                 Добавить категорию
                             </button>
                         </a>

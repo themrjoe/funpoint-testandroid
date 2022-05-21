@@ -2,9 +2,9 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <style>
         body {
             background: url("img/background.png");
@@ -13,51 +13,60 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-        .offer{
+
+        .offer {
             margin-left: 0 !important;
             margin-top: 75% !important;
         }
-        .next-page-btn{
+
+        .next-page-btn {
             position: relative;
         }
-        .next-page-btn::before{
+
+        .next-page-btn::before {
             content: "";
             position: absolute;
-            bottom:0;
+            bottom: 0;
             left: 0;
             width: 15px;
             height: 5px;
             background-color: #fff;
             transform: rotate(45deg);
         }
-        .next-page-btn::after{
+
+        .next-page-btn::after {
             content: "";
             position: absolute;
-            bottom:0;
+            bottom: 0;
             right: 0;
             width: 15px;
             height: 5px;
             background-color: #fff;
             transform: rotate(-45deg);
         }
-        .category-select{
+
+        .category-select {
             max-width: 100% !important;
         }
-        @media screen and (max-width:955px) {
-            header.header>.container>.row>.col-lg-3{
+
+        @media screen and (max-width: 955px) {
+            header.header > .container > .row > .col-lg-3 {
                 display: flex;
                 justify-content: center;
             }
-            header.header>.container>.row>.col-lg-9>nav>ul{
+
+            header.header > .container > .row > .col-lg-9 > nav > ul {
                 justify-content: center !important;
             }
-            .offer{
+
+            .offer {
                 margin-top: 20% !important;
                 width: 100% !important;
             }
         }
-        @media screen and (max-width:525px){
-            header.header>.container>.row>.col-lg-9>nav>ul{
+
+        @media screen and (max-width: 525px) {
+            header.header > .container > .row > .col-lg-9 > nav > ul {
                 flex-direction: column;
                 align-items: center;
             }
@@ -67,17 +76,17 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen, projection"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/bootstrap-glyphicons.css">
+    <link href="css/bootstrap.min.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
 
 </head>
 <body>
 
-<form enctype="multipart/form-data" action="#" th:action="@{/}" th:object="${event}" method="post">
+<form action="#" enctype="multipart/form-data" method="post" th:action="@{/}" th:object="${event}">
     <div class="modal fade" id="EventModalFade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -85,82 +94,82 @@
                     <h4 class="modal-title">
                         Добавление события
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Название события<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalTitle">
-                            <input th:field="*{title}" type="text" class="form-control form-control-sm" id="title"
-                                   placeholder="">
+                            <input class="form-control form-control-sm" id="title" placeholder="" th:field="*{title}"
+                                   type="text">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Категория события<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalTitle">
                             <select class="category-select col-sm-7 form-control form-control-sm" id="categoryTitle"
-                            th:field="*{categoryTitle}" type="text">
-                        <option th:each="category: ${categories}" th:value="${category.title}"
-                                th:text="${category.title}"></option>
-                        </select>  
+                                    th:field="*{categoryTitle}" type="text">
+                                <option th:each="category: ${categories}" th:text="${category.title}"
+                                        th:value="${category.title}"></option>
+                            </select>
                         </div>
-                        
+
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Адрес<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalAddress">
-                            <input th:field="*{address}" type="text" class="form-control form-control-sm" id="address"
-                                   placeholder="">
+                            <input class="form-control form-control-sm" id="address" placeholder="" th:field="*{address}"
+                                   type="text">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Дата<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalDate">
-                            <input type="date" th:field="*{eventDate}"
-                                   class="form-control form-control-sm" id="eventDate" placeholder="">
+                            <input class="form-control form-control-sm" id="eventDate"
+                                   placeholder="" th:field="*{eventDate}" type="date">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Время<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalTime">
-                            <input type="time" th:field="*{eventTime}"
-                                   class="form-control form-control-sm" id="eventTime" placeholder="">
+                            <input class="form-control form-control-sm" id="eventTime"
+                                   placeholder="" th:field="*{eventTime}" type="time">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Цена
                         </label>
                         <div class="col-sm-8 eventModalPrice">
-                            <input th:field="*{price}" type="number" class="form-control form-control-sm" id="price"
-                                   placeholder="">
+                            <input class="form-control form-control-sm" id="price" placeholder="" th:field="*{price}"
+                                   type="number">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="EventModalFade" class="col-sm-4 col-form-label col-form-label-sm">
+                        <label class="col-sm-4 col-form-label col-form-label-sm" for="EventModalFade">
                             Описание<span class="important-field">*</span>
                         </label>
                         <div class="col-sm-8 eventModalDescription">
-                            <textarea th:field="*{description}" type="text" class="form-control form-control-sm"
-                                      id="description"
-                                      rows="4"></textarea>
+                            <textarea class="form-control form-control-sm" id="description" rows="4"
+                                      th:field="*{description}"
+                                      type="text"></textarea>
                         </div>
                     </div>
 
@@ -188,10 +197,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
                         Закрыть
                     </button>
-                    <button type="submit" class="btn btn-primary " value="Submit">
+                    <button class="btn btn-primary " type="submit" value="Submit">
                         Отправить
                     </button>
                 </div>
@@ -200,34 +209,34 @@
     </div>
 </form>
 
-<header id="header" class="header">
+<header class="header" id="header">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-3">
-                <img src="img/logo.png" alt="FunPoint" class="logo">
+                <img alt="FunPoint" class="logo" src="img/logo.png">
             </div>
             <div class="col-lg-9 ml-auto">
                 <nav>
                     <ul class="menu d-flex justify-content-end">
                         <li class="menu__item">
                             <a href="#">
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                                <button class="btn btn-link" data-target="#" data-toggle="modal" type="button">
                                     Главная
                                 </button>
                             </a>
                         </li>
                         <li class="menu__item">
-                            <a th:href="@{~/categories}" href="categories.html">
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#">
+                            <a href="categories.html" th:href="@{~/categories}">
+                                <button class="btn btn-link" data-target="#" data-toggle="modal" type="button">
                                     Категории
                                 </button>
                             </a>
                         </li>
                         <li class="menu__item">
                             <a href="#">
-                                <button type="button" class="btn btn-link" data-toggle="modal"
-                                        data-target="#EventModalFade">
+                                <button class="btn btn-link" data-target="#EventModalFade" data-toggle="modal"
+                                        type="button">
                                     Добавить событие
                                 </button>
                             </a>
@@ -247,10 +256,10 @@
             </div>
         </div>
 
-        <div style="margin-top: 50px;" class="row justify-content-center">
-            <a th:href="@{~/allEvents}" href="allEvents.html">
-                <button type="button" class="next-page-btn btn btn-link" data-toggle="modal" data-target="#">
-                    
+        <div class="row justify-content-center" style="margin-top: 50px;">
+            <a href="allEvents.html" th:href="@{~/allEvents}">
+                <button class="next-page-btn btn btn-link" data-target="#" data-toggle="modal" type="button">
+
                 </button>
             </a>
         </div>

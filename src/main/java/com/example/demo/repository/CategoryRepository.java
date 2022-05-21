@@ -8,6 +8,8 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     Category getCategoryByTitle(String title);
+
     List<Category> getAllByOnModerationIsFalse();
+
     List<Category> getAllByOnModerationIsTrueAndDeclinedIsFalseAndModeratingStatusIsNull();
 }
