@@ -9,9 +9,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     platform: postgres
-    url: jdbc:postgresql://ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/dbrunkfj1q28gm
-    username: cnckuujajxmngm
-    password: caeb629b466c66e82993679d437f70b9939f334416218d4a346ad60fcd1bbd4f
+    url: jdbc:postgresql://ec2-52-18-116-67.eu-west-1.compute.amazonaws.com:5432/d94cn0cqspd33n
+    username: qurnlqpumutmwf
+    password: f642da0201b4fc2b165ca65ac2db2748242905fb236e6f5abc8a15eb0e409c55
     driverClassName: org.postgresql.Driver
 server:
   port: 8081
