@@ -22,7 +22,7 @@ import java.util.List;
 @CrossOrigin(origins = "https://fun-point-app.herokuapp.com")
 @Controller
 @RequiredArgsConstructor
-public class PagesController {
+public class EndpointController {
 
     private static final String FOOD = "Еда";
     private static final String MUSIC = "Музыка";
